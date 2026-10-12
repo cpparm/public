@@ -1,43 +1,67 @@
-# Engineering Requirement Specifications for ERS
+# Engineering Requirement Specification for ERS Documents
 
-version 1.0
+Version 1.1
 
 ## Scope
 
-This document describes the requirements for Engineering Requirement Specifications, or, the ERS for ERS's. It does not cover non engineering requirements. For instance, "looking nice" is a valid requirement for many products, but it's not an *engineering* requirement.
+This document specifies requirements for writing an Engineering Requirement Specification (ERS). An ERS captures required product outcomes and constraints, including aesthetic needs and interface constraints such as supported platforms, protocols, and data formats.
+
+This document covers the structure, content, and quality of an ERS. It does not prescribe a particular product design or documentation tool. Aesthetic requirements are included within its scope and are subject to the same verifiability rules as other requirements.
 
 ## Glossary
 
-- **ERS:** Engineering Requirement Specification
+- **ERS:** Engineering Requirement Specification.
+- **ID:** Identifier.
+- **QA:** Quality assurance.
+- **shall:** Indicates a mandated requirement.
+- **should:** Indicates a recommendation.
+- **may:** Indicates permission.
 
 ## System Description
-The goal of the Engineering Requirment Specification is to capture all the product's requimrents. It shall be devleoped after a preliminary understanding of the target customers and their use cases are achieved, and before the product design starts. In writing the ERS, it's imperative not to think about what the design solution looks like. Assume anything can be done. Just focus on what you want the product to do.
+The purpose of an ERS is to give product designers, marketing, engineers, QA, and sales a shared definition of the product's requirements. It connects customer needs and use cases to product design, verification, and sales claims.
 
-This document is written in Markdown. The advantages are:
-1. It is simple to write, yet have sufficient layout control for my purpose.
-1. It works nicely with source control tools. 
-But it's not a requirement.
+The initial ERS establishes the required outcomes before product design begins. Exploring those outcomes without prematurely selecting an implementation helps keep the design open. Known constraints still inform the requirements, and the ERS evolves as feasibility findings and stakeholder needs become clearer. The requirements below define this workflow.
 
 ## Use Cases
 
-| Case ID  | Description |
-|:----------|:----------|
-| U01   | Product designers document the prodcut requirments in the ERS. |
-| U02   | Marketiers check the ERS to verify it captures what the market needs. |
-| U03   | Engineers use the ERS to guide what to design in the product. |
-| U04   | QA/reliability engineers use the ERS to design validation and test plans. |
-| U05 | Sales check the ERS to make sure the sales messages are consistent with what the ERS promises to deliver. |
+| Case ID | Description |
+|:--------|:------------|
+| U01 | Product designers document product requirements in the ERS. |
+| U02 | Marketing checks the ERS to verify that it captures customer and market needs. |
+| U03 | Engineers use the ERS to guide product design. |
+| U04 | QA and reliability engineers use the ERS to develop validation and test plans. |
+| U05 | Sales checks the ERS to ensure that sales messages are consistent with the product's specified capabilities. |
 
 ## Requirements
 
-| Requirement ID  | Description |
-|:----------|:----------|
-| R001   | There are four required secstions: *Scope*, *Glossary*, *Use Cases*, *Requiremnts*.|
-| R002   | There should be a version number at the top of the ERS. The author is free to choose the format of the version number. |
-| R003   | An optional section of *Revision History* could follow the version number. It's encouraged to use a source control tool to capture the revision history instead of keeping it in the doucmnet itself. But if you do decide to keep the revision history in the document, each entry should include the author of that revision, the date of that revision, the version number that revision is related to, and a brief and clear description fo the revision. |
-| R004 | The *scope* section shall specify what is and is not covered in the ERS. |
-| R005 | All acronyms used in the document must be defined in the *glossary* section. |
-| R006   | Each use case must have a unique ID. The author is free to choose the format of the ID   |
-| R007   | Each requirment must have a unique ID. The author is free to choose the format of the ID   |
-| R008   | A requirment has to be verifiable. You can't have a requiremnt "the system must run fast". How fast is fast?   |
-| R009  | A requirement can not answer its own question. In otherwords, a requirement can not be the solution. "The door is made of stainless steel" maybe written down as a requirment. If it's a solution to the requirment the door must be strong, then the actual requirement should be written down instead. However, if it's an aesthetic consideration the door must have that specific look, it could be a legitimate requirement.  |
+| ID | Description | Related use case ID |
+|:---|:------------|:--------------------|
+| R001 | The ERS shall contain five sections: *Scope*, *Glossary*, *System Description*, *Use Cases*, and *Requirements*. | U01 |
+| R002 | The ERS should display a version number at the top of the document. | U01, U03, U04, U05 |
+| R003 | A *Revision History* section may follow the version number. | U01 |
+| R004 | The *Scope* section shall specify what is and is not covered in the ERS. | U01, U02, U03, U04, U05 |
+| R005 | The *Glossary* section shall define every acronym used in the document. | U01, U02, U03, U04, U05 |
+| R006 | Each use case shall have a unique ID. | U01, U02 |
+| R007 | Each requirement shall have a unique ID. | U01, U03, U04 |
+| R008 | Each requirement shall state an observable outcome or constraint and a pass/fail criterion, including applicable operating conditions, units, and tolerances. **Guidance:** "The system must run fast" does not provide a pass/fail criterion. Define the required performance and the conditions under which it is measured. For aesthetic needs, a specified finish or an agreed reference sample can provide a basis for acceptance instead of an undefined judgment such as "looking nice." | U01, U03, U04, U05 |
+| R009 | Each requirement shall describe a required outcome rather than select an implementation, unless the implementation is itself a documented external constraint. **Guidance:** Consider "The door is made of stainless steel." If stainless steel is merely the designer's proposed way to make the door strong, state the required load capacity and acceptance criterion instead. If a stakeholder requires that material for its appearance, it may be a legitimate aesthetic constraint. Required platforms, protocols, and data formats may similarly be legitimate interface constraints. R012 and R013 require the source and rationale for these implementation constraints. | U01, U02, U03 |
+| R010 | Each requirement shall contain one independently verifiable obligation. **Guidance:** Split compound requirements into separate statements so QA can test them individually. For example, a startup-time requirement and a shutdown-time requirement need separate IDs. Explanations and examples can accompany an obligation within the same description. | U01, U03, U04 |
+| R011 | Each requirement shall identify the use case or use cases it supports. | U01, U02, U03, U04, U05 |
+| R012 | Each externally imposed implementation constraint shall identify its source. | U01, U02, U03 |
+| R013 | Each externally imposed implementation constraint shall include its rationale. | U01, U02, U03 |
+| R014 | If a *Revision History* section is included, each entry shall identify the revision's author. | U01, U03, U04 |
+| R015 | If a *Revision History* section is included, each entry shall record the revision's date. | U01, U03, U04 |
+| R016 | If a *Revision History* section is included, each entry shall identify the document version associated with the revision. | U01, U03, U04, U05 |
+| R017 | If a *Revision History* section is included, each entry shall include a brief, clear description of the change. | U01, U03, U04, U05 |
+| R018 | Once assigned, an ID shall remain unchanged through document revisions. | U01, U03, U04, U05 |
+| R019 | A retired ID shall not be reused. | U01, U03, U04, U05 |
+| R020 | Drafting the initial ERS shall follow a preliminary understanding of the target customers and their use cases. | U01, U02 |
+| R021 | The initial ERS shall be drafted before product design begins. | U01, U03 |
+| R022 | The ERS shall record known constraints affecting the required product outcomes. | U01, U02, U03, U04 |
+| R023 | The ERS shall be revised when feasibility findings or stakeholder needs change its requirements. | U01, U02, U03, U04, U05 |
+
+## Authoring Notes
+
+Authors may choose the format of version numbers and IDs. Source control should capture revision history; an in-document *Revision History* section remains optional.
+
+This document uses Markdown because it is simple to write, provides sufficient layout control, and works well with source control. Markdown is not required.
